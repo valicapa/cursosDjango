@@ -1,0 +1,40 @@
+{% extends "contenido/menu.html" %}
+
+{% block titulo %}Contacto{% endblock %}
+
+{% block encabezado %}Formulario para pedir informacion {% endblock %}
+
+{% block contenido %}
+
+<div class="container mt-5">
+    <form class="bg-light p-4 rounded shadow-sm">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre">
+        </div>
+        
+        <div class="mb-3">
+            <label for="correo" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="correo" name="correo">
+        </div>
+        
+        <div class="mb-3">
+            <label for="curso" class="form-label">Curso</label>
+            <select class="form-select" id="curso" name="curso">
+                <option value="curso1">Curso de Python</option>
+                <option value="curso2">Curso de bases de datos</option>
+                <option value="curso3">Curso de POO</option>
+                <option value="curso3">Curso de JavaScript</option>
+                <option value="curso3">Curso de MongoDB</option>
+            </select>
+        </div>
+        
+        <div class="mb-3">
+            <label for="comentario" class="form-label">Comentario:</label>
+            <textarea class="form-control" id="comentario" rows="5"></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
+{% endblock %}
