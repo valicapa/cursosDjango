@@ -1,0 +1,63 @@
+{% extends "contenido/menu.html" %}
+
+<!-- MANDA EL NOMBRE QUE VA A RESIVIR EL TITULO EN EL ENCABEZADO -->
+{% block titulo %}Cursos{% endblock %}
+
+<!-- esta parte sustitue loo que hay en el componente padre (encabezado) esto es la herencia -->
+   {% block encabezado %}Bienvenido a la pagina de cursos{% endblock %}
+
+{% block contenido %}
+
+<!-- CARDS QUE CONTIENEN LA INFORMACION DE LOS CURSOS -->
+
+
+
+    <div class="container mt-5">
+    <h3>Los cursos disponibles son:</h3>
+    <br>
+    <div class="card ">
+        <div class="card-body">
+            <h5 class="card-title">Curso de Python</h5>
+            <p class="card-text">Aprende Python desde cero, ideal para principiantes.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="card ">
+        <div class="card-body">
+            <h5 class="card-title">Bases de datos</h5>
+            <p class="card-text">Aprende a administrar una base de datos SQL.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="card ">
+        <div class="card-body">
+            <h5 class="card-title">Curso de JavaScript</h5>
+            <p class="card-text">Aprender JavaScript es mas facil con nuestros cursos.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="card ">
+        <div class="card-body">
+            <h5 class="card-title">Curso de POO</h5>
+            <p class="card-text">Aprende programacon orientada a objetos .</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="card ">
+        <div class="card-body">
+            <h5 class="card-title">Curso de MongoDB</h5>
+            <p class="card-text">Aprende a utilizar bases de datos NoSQL.</p>
+        </div>
+    </div>
+</div>
+
+
+{%endblock %}

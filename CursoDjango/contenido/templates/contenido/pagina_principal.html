@@ -1,0 +1,19 @@
+{% extends "contenido/menu.html" %}
+
+<!-- MANDA EL NOMBRE QUE VA A RESIVIR EL TITULO EN EL ENCABEZADO -->
+{% block titulo %}Pagina principal{% endblock %}
+
+<!-- esta parte sustitue loo que hay en el componente padre (encabezado) esto es la herencia -->
+  {% block encabezado %}Hola, bienvenidos al portal{% endblock %}
+
+{% block contenido %}
+
+
+
+<div class="container mt-5">
+    
+    <h4 >Aqui encontraras los cursos con los que contamos asi como perdir informacion de alguno de ellos.</h4>
+        
+</div>
+
+{%endblock %} 
