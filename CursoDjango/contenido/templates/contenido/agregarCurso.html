@@ -1,0 +1,51 @@
+{% extends "contenido/menu.html" %}
+
+{% block titulo %}Agregar Curso{% endblock %}
+
+{% block encabezado %}Formulario para Agregar Cursos{% endblock %}
+
+{% block contenido %}
+<style>
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        input[type="file"] {
+            font-size: 18px;
+        }
+        .mb-3 textarea {
+            font-size: 18px;
+        }
+    </style>
+<div class="container mt-5">
+    <form class="bg-light p-4 rounded shadow-sm" method="POST" action="{% url 'registrar' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_nombre" class="form-label">Nombre del Curso</label>
+            <input type="text" class="form-control" id="id_nombre" name="nombre" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="id_descripcion" class="form-label">Descripción</label>
+            <textarea class="form-control" id="id_descripcion" name="descripcion" rows="5" required></textarea>
+        </div>
+        
+        <div class="mb-3">
+            <label for="id_cupoCurso" class="form-label">Cupo Disponible</label>
+            <input type="number" class="form-control" id="id_cupoCurso" name="cupoCurso" min="1" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="id_fechaInicio" class="form-label">Fecha de Inicio</label>
+            <input type="date" class="form-control" id="id_fechaInicio" name="fechaInicio" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="id_imagen" class="form-label">Imagen del Curso</label>
+            <input type="file" class="form-control" id="id_imagen" name="imagen" accept="image/*">
+            <small class="form-text text-muted">Sube una imagen para el curso (opcional).</small>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Agregar Curso</button>
+    </form>
+</div>
+{% endblock %}
