@@ -17,13 +17,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from contenido import views
+from cursos import views as views_curso
 from django.conf import settings
+from django.conf.urls.static import static # Necesario para servir MEDIA_URL en DEBUG
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.principal, name='principal'),
     path('contacto/', views.contacto, name='contacto'),
-    path('cursos/', views.cursos, name='cursos'),
+    path('cursos/', views_curso.cursoRegistrado, name='cursos'),
+    path('agregarCurso', views.agregarCurso, name='agregar'),
+    path('registrar/', views_curso.registrar, name='registrar'),
+    path('eliminarCurso/<int:id>/', views_curso.eliminarCurso , name='eliminar'),
+    path('formEditarCurso/<int:id>/', views_curso.consultarCursoIndividual , name='ConsultaIndividual'),
+    path('editarCurso/<int:id>/', views_curso.editarCurso, name='Editar'),
+
 ]
 
 if settings.DEBUG:

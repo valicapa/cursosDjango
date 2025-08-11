@@ -11,9 +11,14 @@
 
 
 <div class="container mt-5">
-    
-    <h4 >Aqui encontraras los cursos con los que contamos asi como perdir informacion de alguno de ellos.</h4>
-        
+    {%load static %}
+    <h2>Aqui podras encontrar una gran variedad de cursos a los que podras aplicar. 
+      Solo completa el formulario, selecciona el curso del que quieras daber información.</h2>
+      <br>
+    <p class="mt-3">Para ver los cursos disponibles, puedes ir a la sección de <a href="{% url 'cursos' %}">Cursos</a>.</p>
+    <p>Si deseas agregar un nuevo curso, dirígete a la sección de <a href="{% url 'agregar' %}">Agregar Curso</a>.</p>
+    <p>Para editar un curso existente, visita la sección de <a href="{% url 'cursos' %}">Cursos</a> y selecciona el curso que deseas editar.</p>
+    <p>¡Esperamos que disfrutes de nuestros cursos!</p>
 </div>
 
 {%endblock %} 

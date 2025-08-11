@@ -1,0 +1,22 @@
+{% extends "contenido/menu.html" %}
+
+{% block titulo %}Confirmar Eliminación{% endblock %}
+
+{% block encabezado %}Confirmar Eliminación de Curso{% endblock %}
+
+{% block contenido %}
+
+<div class="container mt-5">
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">¿Estás seguro de que quieres eliminar el curso seleccionado?</h4>
+        <p>Esta acción no se puede deshacer.</p>
+        <hr> {# Agrega una línea horizontal para separar el texto de los botones #}
+        <form method="POST" >
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger me-2">Sí, Eliminar</button> {# Agrega un margen a la derecha para separar los botones #}
+            <a href="{% url 'cursos' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

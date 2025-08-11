@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +40,110 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'contenido',
     'cursos.apps.CursosConfig',
+    'ckeditor',
 ]
+
+# JAZZMIN_SETTINGS = {
+#     "site_title": "Mi Sitio",
+#     "site_header": "Mi Sitio",
+#     "welcome_sign": "Bienvenido a mi sitio de administración",
+#     "copyright": "Copyright 2023 Mi Sitio",
+# }
+
+# settings.py
+
+# ... (tus otras configuraciones) ...
+
+JAZZMIN_SETTINGS = {
+    # Título de la cabecera (aparece en la parte superior izquierda)
+    "site_header": "CursosDjango",
+
+    # Título de la página (aparece en la pestaña del navegador)
+    "site_title": "Mi Plataforma de Cursos",
+
+
+    # Texto que aparece en la parte inferior del panel de administración
+    "welcome_sign": "¡Bienvenido al administrador de cursos!",
+
+    # Icono de favoritos (favicon)
+    "favicon": "img/favicon.ico", # Si está en my_app/static/img/favicon.ico
+
+
+    #############
+    # UI Tweaks #
+    #############
+    # Cambia el tema de color. Puedes elegir entre varios:
+    # "darkly", "flatly", "cyborg", "solar", "superhero", "darkly",
+    # "united", "cosmo", "materia", "simplex", "yeti", "litera",
+    # "journal", "lumen", "lux", "minty", "pulse", "sandstone", "sketchy",
+    # "spacelab", "united", "zephyr", "bootstrap", "vapor", "slate"
+    "theme": "cosmo", 
+
+    # Colores de la barra lateral
+    "sidebar_variants": "light", # O "dark", "light", "secondary", "info", etc.
+
+    # Colores de la barra superior (navbar)
+    "navbar_variants": ["dark", "primary", "info", "warning", "danger", "success"],
+
+    # Opciones de la barra lateral
+    "sidebar": {
+        "show_brand": True,
+        "show_fields": True, # Muestra los campos del modelo en la barra lateral
+        "show_search": True, # Muestra la barra de búsqueda en la barra lateral
+        "navigation_expanded": False, # Barra lateral contraída por defecto
+    },
+
+    # Iconos para los modelos (opcional, puedes usar FontAwesome 5 Free)
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "cursos.Curso": "fas fa-book", # Icono para tu modelo Curso
+        "cursos.Actividad": "fas fa-clipboard-list", # Icono para tu modelo Actividad
+        # Puedes buscar más iconos en https://fontawesome.com/v5/search
+    },
+    # Formato de icono para modelos sin icono explícito
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+
+    #############
+    # UI Builder #
+    #############
+    # Permite a los usuarios cambiar el tema y otras configuraciones desde el frontend
+    "show_ui_builder": True,
+}
+
+# JAZZMIN_UI_TWEAKS (opcional, para ajustes más finos en la interfaz)
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": False,
+    "accent": "accent-primary",
+    "navbar": "navbar-dark navbar-primary",
+    "no_navbar_border": False,
+    "navbar_fixed": False,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": False,
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": False,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": False,
+    "theme": "united", # Puedes duplicar el tema aquí si quieres forzarlo
+    "dark_mode_theme": None, # Tema para el modo oscuro, si lo habilitas
+    "button_classes": {
+        "primary": "btn-outline-primary",
+        "secondary": "btn-outline-secondary",
+        "info": "btn-outline-info",
+        "warning": "btn-outline-warning",
+        "danger": "btn-outline-danger",
+        "success": "btn-outline-success"
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,13 +179,23 @@ WSGI_APPLICATION = 'CursoDjango.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+DATABASES ={
+    'default':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'cursos_jango',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -105,7 +219,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -123,3 +237,18 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CKEDITOR_CONFIGS={
+    'default':{'toolbar': 'Custom',
+               'toolbar_Custom': [
+                   ['Bold', 'Italic', 'Underline'],                   
+                    ['Link'],
+                    [ 'Source' ]
+               ]
+        
+    }
+}
+
+MEDIA_URL= '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

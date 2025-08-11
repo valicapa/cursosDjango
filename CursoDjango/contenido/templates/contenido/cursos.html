@@ -4,60 +4,46 @@
 {% block titulo %}Cursos{% endblock %}
 
 <!-- esta parte sustitue loo que hay en el componente padre (encabezado) esto es la herencia -->
-   {% block encabezado %}Bienvenido a la pagina de cursos{% endblock %}
+{% block encabezado %}Bienvenido a la pagina de cursos{% endblock %}
 
 {% block contenido %}
 
 <!-- CARDS QUE CONTIENEN LA INFORMACION DE LOS CURSOS -->
 
-
-
-    <div class="container mt-5">
+<div class="container mt-5">
     <h3>Los cursos disponibles son:</h3>
-    <br>
-    <div class="card ">
-        <div class="card-body">
-            <h5 class="card-title">Curso de Python</h5>
-            <p class="card-text">Aprende Python desde cero, ideal para principiantes.</p>
-        </div>
-    </div>
+    <br>    
 </div>
-
+{% if not cursos %}
 <div class="container mt-5">
-    <div class="card ">
-        <div class="card-body">
-            <h5 class="card-title">Bases de datos</h5>
-            <p class="card-text">Aprende a administrar una base de datos SQL.</p>
-        </div>
+    <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">No hay cursos disponibles.</h4>
+        <p>Por favor, agrega un curso para comenzar.</p>
+        <a href="{% url 'agregar' %}" class="btn btn-primary">Agregar Curso</a>
     </div>
-</div>
+{% else %}
+    {% for curso in cursos %}
+        <div class="container mt-5">
+            <div class="card ">
+                <div class="card-body ">
+            <h2 class="card-title">{{curso.nombre}}</h5>
+            <p class="card-text">{{curso.descripcion }}</p>
+            <p class="card-text">Cupo: {{curso.cupoCurso }}</p>
+            <p class="card-text">Inicio: {{curso.fechaInicio }}</p>
+            <img src="{{curso.imagen.url}}" alt="{{curso.nombre}}" class="img-media">
+            <div class="d-flex justify-content-end mt-auto" role="group" aria-label="Acciones del curso">
+                <a href="{%url 'ConsultaIndividual' curso.id%}"  class="btn btn-warning btn-sm me-2" style="font-size: 18px;">Editar</a>
+                <a href="{%url 'eliminar' curso.id%}" class="btn btn-danger btn-sm" style="font-size: 18px;">Eliminar</a>
+            </div>
+        </div>
+            </div>
+        </div>
 
-<div class="container mt-5">
-    <div class="card ">
-        <div class="card-body">
-            <h5 class="card-title">Curso de JavaScript</h5>
-            <p class="card-text">Aprender JavaScript es mas facil con nuestros cursos.</p>
-        </div>
-    </div>
-</div>
 
-<div class="container mt-5">
-    <div class="card ">
-        <div class="card-body">
-            <h5 class="card-title">Curso de POO</h5>
-            <p class="card-text">Aprende programacon orientada a objetos .</p>
-        </div>
-    </div>
-</div>
 
-<div class="container mt-5">
-    <div class="card ">
-        <div class="card-body">
-            <h5 class="card-title">Curso de MongoDB</h5>
-            <p class="card-text">Aprende a utilizar bases de datos NoSQL.</p>
-        </div>
-    </div>
-</div>
+{%endfor%}
+{% endif %}
+
 
 
 {%endblock %}
